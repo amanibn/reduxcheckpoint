@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import {Button} from "react-bootstrap";
-import { editPost } from "../Actions/actions";
+import { editPost, addPost } from "../Actions/actions";
 import { useDispatch } from 'react-redux';
 const Todo = ({todo, idx, isDone}) => {
   const dispatch = useDispatch()
-  console.log(idx);
+ 
   const handleChange = (idx) => {
     dispatch(editPost({
       id:idx,
@@ -13,16 +12,20 @@ const Todo = ({todo, idx, isDone}) => {
     }));
 }
 const handleEdit = (idx) => {
-  dispatch(editPost({
-    id:idx,
-    title:todo
-  }));
+  console.log({todo})
+  document.getElementById("title").value = todo; 
+  console.log(idx);
+  /*dispatch(editPost({
+    id: idx,
+    todo,
+    isDone
+}))*/
 }
   return (
              
     <div className="todo mb-1 row">
     <div className="col-10">
-    <span className={`banner ${isDone ? "complete" : ""}`} >{todo}</span>
+    <span onClick={() => handleEdit(idx)} className={`${isDone ? "complete" : ""}`} >{todo}</span>
     </div>
    
 <div className="col-2" style={{textAlign: 'right'}}>

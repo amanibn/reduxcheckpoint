@@ -17,22 +17,18 @@ const initialState = {
             title: 'my third post',
             isDone: false
         }
-    ],
-    filters: {
-      status: 'All',
-      colors: []
-    }
+    ]
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ARTICLE:
+            console.log(action.payload)
             return {
                 posts: [...state.posts, action.payload]
             }
            
             case EDIT_ARTICLE:
             return {
-                ...state,
                 posts: state.posts.map((todo) => {
                     
                     if (todo.id === action.payload.id) {
@@ -47,7 +43,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: state.posts.filter(todo => {
-                    console.log('aa'+action.payload)
                     if(action.payload =='all')
                     return todo
                     else
