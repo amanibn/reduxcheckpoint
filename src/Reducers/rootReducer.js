@@ -1,5 +1,5 @@
 //import { ADD_ARTICLE, Edit_ARTICLE } from "../Constants/actions-types";
-import { ADD_ARTICLE, EDIT_ARTICLE,FILTER_ARTICLE } from "../Actions/actions-types";
+import { ADD_ARTICLE, EDIT_ARTICLE,FILTER_ARTICLE, EDIT_TODO, EDIT_ADD_TODO, ADD_TEXT} from "../Actions/actions-types";
 const initialState = {
     posts: [
         {
@@ -17,14 +17,17 @@ const initialState = {
             title: 'my third post',
             isDone: false
         }
-    ]
+    ],text: "",
+    selected: undefined
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ARTICLE:
+            //console.log(posts: [...state.posts, action.payload],text:'')
             console.log(action.payload)
             return {
-                posts: [...state.posts, action.payload]
+                posts: [...state.posts, action.payload],text:''
+                
             }
            
             case EDIT_ARTICLE:
@@ -51,7 +54,36 @@ const rootReducer = (state = initialState, action) => {
                 })
               
             }
-         
+            case ADD_TEXT:
+                console.log({ ...state, text: action.payload})
+      return {
+           ...state, text: action.payload 
+        };
+            case EDIT_TODO:
+                console.log(action.payload)
+                console.log({ ...state,
+                    text: action.payload,
+                    selected: action.payload})
+            return {
+                ...state,
+                text: action.payload.text,
+                selected: action.payload.selected
+            };
+            case EDIT_ADD_TODO:
+                const todo4 = state.posts.map((todo, i) =>
+                  i !== action.payload.selected ? todo : {id:i,title:action.payload.value}
+                );
+                console.log({ ...state,
+                    //posts: todo4,
+                    selected: undefined,
+                    text: ""})
+                //setPersist(todo4);
+                return {
+                  ...state,
+                  posts: todo4,
+                  selected: undefined,
+                  text: ""
+                };
         default:
             return state
     }

@@ -1,14 +1,14 @@
-import CreatePost from './Components/CreatePost';
-import PostList from './Components/PostList';
+import CreatePost from './components/CreatePost';
+import PostList from './components/PostList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App() {
-
+function App(state) {
+console.log(state)
   return (
     <div className="App">
       <div className="container">
-      <CreatePost/>
+      <CreatePost />
       <PostList/>
     </div>
     </div>
