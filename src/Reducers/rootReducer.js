@@ -71,7 +71,7 @@ const rootReducer = (state = initialState, action) => {
             };
             case EDIT_ADD_TODO:
                 const todo4 = state.posts.map((todo, i) =>
-                  i !== action.payload.selected ? todo : {id:i,title:action.payload.value}
+                  todo.id !== action.payload.selected ? todo : {id:action.payload.selected,title:action.payload.value}
                 );
                 console.log({ ...state,
                     //posts: todo4,
