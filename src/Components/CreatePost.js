@@ -10,7 +10,6 @@ import { v4 as uuidv4 } from "uuid";
     const selected = useSelector(state => state.selected);
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('selected : '+selected)
         if(text == ''){
             alert("Please enter a task");
         }else{
@@ -32,8 +31,6 @@ import { v4 as uuidv4 } from "uuid";
 }
    
     function filterItems (type) {
-        console.log(type)
-        console.log(posts)
         const results = posts.filter((post) => {
         const t= dispatch(filterPost(type));
 
@@ -42,7 +39,6 @@ import { v4 as uuidv4 } from "uuid";
     };
     const handleChange = e =>{
         dispatch(addText(e.target.value));
-        console.log(e.target.value)
     } 
     return (
         
